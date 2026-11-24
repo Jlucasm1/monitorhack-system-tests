@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MonitorHack — Monitoramento de Ataques</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ===================== TELA DE LOGIN ===================== -->
+    <section id="login-view" class="login-view">
+        <div class="login-card">
+            <div class="brand">
+                <span class="brand-dot"></span>
+                <h1>MonitorHack</h1>
+            </div>
+            <p class="subtitle">Centro de Operações de Segurança (SOC)</p>
+
+            <label for="username">Usuário</label>
+            <input id="username" type="text" autocomplete="off" placeholder="analista">
+
+            <label for="password">Senha</label>
+            <input id="password" type="password" autocomplete="off" placeholder="••••••••">
+
+            <button id="btn-login" type="button">Entrar</button>
+
+            <p id="login-error" class="login-error" hidden>Credenciais inválidas.</p>
+            <p class="hint">Dica p/ demo: <code>analista</code> / <code>monitor2026</code></p>
+        </div>
+    </section>
+
+    <!-- ===================== DASHBOARD ===================== -->
+    <section id="dashboard-view" class="dashboard-view" hidden>
+        <header class="topbar">
+            <div class="brand">
+                <span class="brand-dot live"></span>
+                <h1>MonitorHack</h1>
+                <span class="tag">SOC · Ao vivo</span>
+            </div>
+            <div class="user-box">
+                <span id="current-user">admin</span>
+                <button id="btn-logout" type="button" class="ghost">Sair</button>
+            </div>
+        </header>
+
+        <!-- Cartões de estatística -->
+        <div class="stats">
+            <div class="stat-card">
+                <span class="stat-label">Total de eventos</span>
+                <span id="stat-total" class="stat-value">0</span>
+            </div>
+            <div class="stat-card critical">
+                <span class="stat-label">Críticos</span>
+                <span id="stat-critical" class="stat-value">0</span>
+            </div>
+            <div class="stat-card active">
+                <span class="stat-label">Ativos</span>
+                <span id="stat-active" class="stat-value">0</span>
+            </div>
+            <div class="stat-card blocked">
+                <span class="stat-label">IPs bloqueados</span>
+                <span id="stat-blocked" class="stat-value">0</span>
+            </div>
+        </div>
+
+        <!-- Controles -->
+        <div class="controls">
+            <div class="filter-group">
+                <label for="filter-type">Tipo de ataque</label>
+                <select id="filter-type">
+                    <option value="">Todos</option>
+                    <option value="Força Bruta">Força Bruta</option>
+                    <option value="SQL Injection">SQL Injection</option>
+                    <option value="Port Scan">Port Scan</option>
+                    <option value="DDoS">DDoS</option>
+                    <option value="XSS">XSS</option>
+                    <option value="Malware">Malware</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="filter-severity">Severidade</label>
+                <select id="filter-severity">
+                    <option value="">Todas</option>
+                    <option value="Crítico">Crítico</option>
+                    <option value="Alto">Alto</option>
+                    <option value="Médio">Médio</option>
+                    <option value="Baixo">Baixo</option>
+                </select>
+            </div>
+            <div class="filter-group grow">
+                <label for="search-ip">Buscar por IP de origem</label>
+                <input id="search-ip" type="text" placeholder="ex.: 203.0.113">
+            </div>
+            <div class="filter-actions">
+                <button id="btn-clear" type="button" class="ghost">Limpar filtros</button>
+                <button id="btn-simulate" type="button" class="primary">⚡ Simular ataque</button>
+            </div>
+        </div>
+
+        <!-- Notificação -->
+        <div id="notification" class="notification" hidden></div>
+
+        <!-- Tabela de eventos -->
+        <div class="table-wrap">
+            <table class="attacks-table">
+                <thead>
+                    <tr>
+                        <th>Horário</th>
+                        <th>IP de origem</th>
+                        <th>Tipo</th>
+                        <th>Severidade</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="attacks-body"><!-- preenchido via JS --></tbody>
+            </table>
+            <p id="empty-state" class="empty-state" hidden>Nenhum evento corresponde ao filtro.</p>
+        </div>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>

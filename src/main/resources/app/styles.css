@@ -1,0 +1,179 @@
+:root {
+    --bg: #0b1020;
+    --panel: #141a2e;
+    --panel-2: #1b2340;
+    --line: #273155;
+    --text: #e6ebf5;
+    --muted: #8b96b5;
+    --accent: #4f8cff;
+    --crit: #ff5c7a;
+    --high: #ffab4f;
+    --ok: #38d39f;
+    --blocked: #c06bff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    background: radial-gradient(1200px 600px at 10% -10%, #182043 0%, var(--bg) 55%);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+/* ---------- LOGIN ---------- */
+.login-view {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px;
+}
+.login-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px;
+    width: 360px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.45);
+}
+.login-card label {
+    display: block;
+    font-size: 13px;
+    color: var(--muted);
+    margin: 16px 0 6px;
+}
+.login-card input {
+    width: 100%;
+    padding: 11px 12px;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    color: var(--text);
+    font-size: 14px;
+}
+.login-card button {
+    width: 100%;
+    margin-top: 22px;
+    padding: 12px;
+    border: none;
+    border-radius: 9px;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+}
+.login-error {
+    color: var(--crit);
+    font-size: 13px;
+    margin: 14px 0 0;
+    text-align: center;
+}
+.hint { color: var(--muted); font-size: 12px; text-align: center; margin-top: 18px; }
+.hint code { color: var(--accent); }
+.subtitle { color: var(--muted); font-size: 13px; margin: 2px 0 6px; }
+
+/* ---------- MARCA ---------- */
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand h1 { font-size: 20px; margin: 0; letter-spacing: .5px; }
+.brand-dot {
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--muted);
+}
+.brand-dot.live {
+    background: var(--ok);
+    box-shadow: 0 0 0 4px rgba(56,211,159,.18);
+    animation: pulse 1.6s infinite;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(56,211,159,.4); }
+    70% { box-shadow: 0 0 0 8px rgba(56,211,159,0); }
+    100% { box-shadow: 0 0 0 0 rgba(56,211,159,0); }
+}
+
+/* ---------- DASHBOARD ---------- */
+.dashboard-view { max-width: 1120px; margin: 0 auto; padding: 22px; }
+.topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 18px; border-bottom: 1px solid var(--line); margin-bottom: 20px;
+}
+.tag {
+    font-size: 11px; color: var(--ok); background: rgba(56,211,159,.12);
+    padding: 3px 9px; border-radius: 20px; margin-left: 6px;
+}
+.user-box { display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: 14px; }
+
+button.ghost {
+    background: transparent; border: 1px solid var(--line); color: var(--text);
+    padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 13px;
+}
+button.primary {
+    background: var(--accent); border: none; color: #fff;
+    padding: 9px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 13px;
+}
+
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
+.stat-card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 16px 18px; display: flex; flex-direction: column; gap: 6px;
+}
+.stat-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+.stat-value { font-size: 30px; font-weight: 700; }
+.stat-card.critical .stat-value { color: var(--crit); }
+.stat-card.active .stat-value { color: var(--high); }
+.stat-card.blocked .stat-value { color: var(--blocked); }
+
+.controls {
+    display: flex; gap: 14px; align-items: flex-end; flex-wrap: wrap;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 16px; margin-bottom: 16px;
+}
+.filter-group { display: flex; flex-direction: column; gap: 6px; }
+.filter-group.grow { flex: 1; min-width: 180px; }
+.filter-group label { font-size: 12px; color: var(--muted); }
+.controls select, .controls input {
+    background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px;
+    color: var(--text); padding: 9px 11px; font-size: 14px; min-width: 150px;
+}
+.filter-actions { display: flex; gap: 10px; margin-left: auto; }
+
+.notification {
+    background: rgba(79,140,255,.14); border: 1px solid rgba(79,140,255,.4);
+    color: var(--text); padding: 10px 14px; border-radius: 8px; margin-bottom: 14px; font-size: 14px;
+}
+
+.table-wrap {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+}
+.attacks-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.attacks-table th {
+    text-align: left; padding: 13px 16px; color: var(--muted);
+    font-size: 12px; text-transform: uppercase; letter-spacing: .5px;
+    border-bottom: 1px solid var(--line); background: var(--panel-2);
+}
+.attacks-table td { padding: 13px 16px; border-bottom: 1px solid var(--line); }
+.attacks-table tr:last-child td { border-bottom: none; }
+.ip-cell { font-family: "Consolas", monospace; color: #cdd7f5; }
+
+.badge { padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.sev-Crítico { background: rgba(255,92,122,.16); color: var(--crit); }
+.sev-Alto    { background: rgba(255,171,79,.16); color: var(--high); }
+.sev-Médio   { background: rgba(79,140,255,.16); color: var(--accent); }
+.sev-Baixo   { background: rgba(139,150,181,.16); color: var(--muted); }
+
+.status-ativo       { color: var(--high); font-weight: 600; }
+.status-bloqueado   { color: var(--blocked); font-weight: 600; }
+.status-reconhecido { color: var(--ok); font-weight: 600; }
+
+.row-actions { display: flex; gap: 8px; }
+.row-actions button {
+    border: 1px solid var(--line); background: var(--panel-2); color: var(--text);
+    padding: 5px 10px; border-radius: 7px; cursor: pointer; font-size: 12px;
+}
+.row-actions button:disabled { opacity: .35; cursor: not-allowed; }
+.btn-block:not(:disabled):hover { border-color: var(--blocked); color: var(--blocked); }
+.btn-ack:not(:disabled):hover { border-color: var(--ok); color: var(--ok); }
+
+.empty-state { color: var(--muted); text-align: center; padding: 28px; margin: 0; }

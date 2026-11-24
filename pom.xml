@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>br.com.monitorhack</groupId>
+    <artifactId>monitorhack-system-tests</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>MonitorHack - Teste de Sistema Automatizado</name>
+    <description>
+        Suite de testes de sistema (E2E) para o painel de monitoramento de ataques
+        MonitorHack, usando Selenium WebDriver + JUnit 5.
+    </description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>17</maven.compiler.release>
+
+        <!-- Versoes centralizadas -->
+        <selenium.version>4.21.0</selenium.version>
+        <junit.version>5.10.2</junit.version>
+        <surefire.version>3.2.5</surefire.version>
+
+        <!-- Controla se o navegador abre visivel (false) ou escondido (true).
+             Padrao: false, para a apresentacao ficar visual no data-show.
+             Rode "mvn test -Dheadless=true" para rodar sem abrir janela. -->
+        <headless>false</headless>
+    </properties>
+
+    <dependencies>
+        <!-- Selenium 4: ja inclui o Selenium Manager, que baixa o ChromeDriver
+             automaticamente. Nao precisa configurar driver na mao. -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+
+        <!-- JUnit 5 (agregador: api + params + engine) -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire.version}</version>
+                <configuration>
+                    <!-- Repassa a propriedade headless para a JVM dos testes -->
+                    <systemPropertyVariables>
+                        <headless>${headless}</headless>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

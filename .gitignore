@@ -1,0 +1,22 @@
+# Build Maven
+target/
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Screenshots gerados pelos testes em caso de falha
+**/screenshots/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
